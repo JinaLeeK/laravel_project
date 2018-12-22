@@ -60,6 +60,15 @@ class PostsController extends Controller
 
          return redirect()->route('category.create');
       }
+
+      $tags = Tag::all();
+      if($tags->count() == 0) {
+
+         Session::flash('info','You must have some tags before attempting to create a post.');
+
+         return redirect()->route('tag.create');
+      }
+
       return view('admin.posts.create')
                ->with('categories', Category::all())
                ->with('tags',Tag::all());
@@ -73,7 +82,6 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-      dd($request->all());
       $aProperty = [
          'title'        => 'required|max:255',
          'featured'     => 'required|image',
@@ -97,7 +105,9 @@ class PostsController extends Controller
 
       $aPost['slug'] = str_slug($request->title);
 
-      Post::create($aPost);
+      $post = Post::create($aPost);
+
+      $post->tags()->attach($request->tags);
 
       Session::flash('success',' Post created successfully');
       return redirect()->route('posts');
@@ -123,7 +133,10 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-      return view('admin.posts.edit')->with('post', Post::find($id))->with('categories', Category::all());
+      return view('admin.posts.edit')
+               ->with('post', Post::find($id))
+               ->with('categories', Category::all())
+               ->with('tags', Tag::all());
         //
     }
 
@@ -134,7 +147,6 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function update(Request $request, $id)
     {
 
@@ -157,6 +169,9 @@ class PostsController extends Controller
       $post->content     = $request->content;
       $post->category_id = $request->category_id;
       $post->save();
+
+      $post->tags()->sync($request->tags);
+
 
       Session::flash('success', 'Post updated Successfully');
 

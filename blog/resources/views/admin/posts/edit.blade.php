@@ -17,10 +17,34 @@
             <label for="category">Select a Category</label>
             <select class="form-control col-lg-6" id="category" name="category_id">
                @foreach($categories as $category)
-               <option value="{{ $category->id }}">{{ $category->name }}</option>
+               <option value="{{ $category->id }}"
+                  @if($post->category_id == $category->id)
+                     selected
+                  @endif
+               >{{ $category->name }}</option>
                @endforeach
             </select>
          </div>
+         <div class="form-group">
+            <label for="tags">Select Tags</label>
+            @foreach($tags as $tag)
+               <div class="checkbox">
+                  <label>
+                     <input
+                        class="form-check-label"
+                        type="checkbox"
+                        name="tags[]"
+                        value="{{ $tag->id }}"
+                        @foreach($post->tags as $t)
+                           @if($t->id === $tag->id)
+                              checked
+                           @endif
+                        @endforeach
+                     > {{ $tag->tag }}</label>
+               </div>
+            @endforeach
+         </div>
+
          <div class="form-group">
             <label for="featured">Featured image</label>
             <input type="file" name="featured" class="form-control" value="">

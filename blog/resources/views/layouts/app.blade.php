@@ -81,31 +81,39 @@
                      <a href="{{ route('home') }}">Home</a>
                   </li>
                   <li class="list-group-item">
-                     <a href="{{ route('categories') }}">Categories</a>
+                     <a href="{{ route('categories') }}">All Categories</a>
                   </li>
 
                   <li class="list-group-item">
                      <a href="{{ route('category.create') }}">Create new category</a>
                   </li>
-
                   <li class="list-group-item">
-                     <a href="{{ route('posts') }}">Posts</a>
+                     <a href="{{ route('posts') }}">All Posts</a>
                   </li>
-
                   <li class="list-group-item">
-                     <a href="{{ route('posts.trashed') }}">Trashed Posts</a>
+                     <a href="{{ route('posts.trashed') }}">All Trashed Posts</a>
                   </li>
-
                   <li class="list-group-item">
                      <a href="{{ route('post.create') }}">Create new post</a>
                   </li>
-
                   <li class="list-group-item">
-                     <a href="{{ route('tags') }}">Tags</a>
+                     <a href="{{ route('tags') }}">All Tags</a>
                   </li>
                   <li class="list-group-item">
                      <a href="{{ route('tag.create') }}">Create new tag</a>
                   </li>
+                  @if(Auth::user()->admin)
+                     <li class="list-group-item">
+                        <a href="{{ route('users') }}">All Users</a>
+                     </li>
+                     <li class="list-group-item">
+                        <a href="{{ route('user.create') }}">Create new user</a>
+                     </li>
+                  @endif
+                  <li class="list-group-item">
+                     <a href="{{ route('user.profile') }}">My Profile</a>
+                  </li>
+
                </ul>
                @endif
             </div>
