@@ -16,7 +16,7 @@
             @if($categories->count()>0)
                @foreach($categories as $category)
                <tr>
-                  <td>{{$category->name}}</td>
+                  <td>{{$category->name}} ({{ $category->posts()->count() }})</td>
                   <td>
                      <a href="{{ route('category.edit', ['id'=>$category->id]) }}" class="btn btn-xs btn-info">Edit</a>
                   </td>

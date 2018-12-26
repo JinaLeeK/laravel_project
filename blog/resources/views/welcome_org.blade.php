@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Seosight - Index Page</title>
 
-    <link rel="stylesheet" type="text/css" href="app/css/fonts.css">
-    <link rel="stylesheet" type="text/css" href="app/css/crumina-fonts.css">
-    <link rel="stylesheet" type="text/css" href="app/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="app/css/grid.css">
-    <link rel="stylesheet" type="text/css" href="app/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app/css/fonts.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app/css/crumina-fonts.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app/css/normalize.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app/css/grid.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app/css/styles.css') }}">
 
 
     <!--Plugins styles-->
 
-    <link rel="stylesheet" type="text/css" href="app/css/jquery.mCustomScrollbar.min.css">
-    <link rel="stylesheet" type="text/css" href="app/css/swiper.min.css">
-    <link rel="stylesheet" type="text/css" href="app/css/primary-menu.css">
-    <link rel="stylesheet" type="text/css" href="app/css/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app/css/jquery.mCustomScrollbar.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app/css/swiper.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app/css/primary-menu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app/css/magnific-popup.css') }}">
 
     <!--Styles for RTL-->
 
@@ -99,9 +99,9 @@
                 <article class="hentry post post-standard has-post-thumbnail sticky">
 
                         <div class="post-thumb">
-                            <img src="app/img/1.png" alt="seo">
+                            <img src="{{ asset('app/img/1.png') }}" alt="seo">
                             <div class="overlay"></div>
-                            <a href="app/img/post1.jpg" class="link-image js-zoom-image">
+                            <a href="{{ asset('app/img/post1.jpg') }}" class="link-image js-zoom-image">
                                 <i class="seoicon-zoom"></i>
                             </a>
                             <a href="#" class="link-post">
@@ -153,9 +153,9 @@
                 <article class="hentry post post-standard has-post-thumbnail sticky">
 
                         <div class="post-thumb">
-                            <img src="app/img/2.png" alt="seo">
+                            <img src="{{ asset('app/img/2.png') }}" alt="seo">
                             <div class="overlay"></div>
-                            <a href="app/img/2.png" class="link-image js-zoom-image">
+                            <a href="{{ asset('app/img/2.png') }}" class="link-image js-zoom-image">
                                 <i class="seoicon-zoom"></i>
                             </a>
                             <a href="#" class="link-post">
@@ -203,7 +203,7 @@
                 <article class="hentry post post-standard has-post-thumbnail sticky">
 
                         <div class="post-thumb">
-                            <img src="app/img/3.jpg" alt="seo">
+                            <img src="{{ asset('app/img/3.jpg') }}" alt="seo">
                             <div class="overlay"></div>
                             <a href="app/img/3.jpg" class="link-image js-zoom-image">
                                 <i class="seoicon-zoom"></i>
@@ -274,7 +274,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="case-item">
                                     <div class="case-item__thumb">
-                                        <img src="app/img/3.jpg" alt="our case">
+                                        <img src="{{ asset('app/img/3.jpg') }}" alt="our case">
                                     </div>
                                     <h6 class="case-item__title"><a href="#">Investigationes demonstraverunt legere</a></h6>
                                 </div>
@@ -283,7 +283,7 @@
                             <div class="col-lg-4  col-md-4 col-sm-6 col-xs-12">
                                 <div class="case-item">
                                     <div class="case-item__thumb">
-                                        <img src="app/img/1.png" alt="our case">
+                                        <img src="{{ asset('app/img/1.png') }}" alt="our case">
                                     </div>
                                     <h6 class="case-item__title">Claritas est etiam processus dynamicus</h6>
                                 </div>
@@ -292,7 +292,7 @@
                             <div class="col-lg-4  col-md-4 col-sm-6 col-xs-12">
                                 <div class="case-item">
                                     <div class="case-item__thumb mouseover poster-3d lightbox shadow animation-disabled" data-offset="5">
-                                        <img src="app/img/2.png" alt="our case">
+                                        <img src="{{ asset('app/img/2.png') }}" alt="our case">
                                     </div>
                                     <h6 class="case-item__title">quod mazim placerat facer possim assum</h6>
                                 </div>
@@ -318,7 +318,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="case-item">
                                     <div class="case-item__thumb">
-                                        <img src="app/img/2.png" alt="our case">
+                                        <img src="{{ asset('app/img/2.png') }}" alt="our case">
                                     </div>
                                     <h6 class="case-item__title"><a href="#">Investigationes demonstraverunt legere</a></h6>
                                 </div>
@@ -327,7 +327,7 @@
                             <div class="col-lg-4  col-md-4 col-sm-6 col-xs-12">
                                 <div class="case-item">
                                     <div class="case-item__thumb">
-                                        <img src="app/img/3.jpg" alt="our case">
+                                        <img src="{{ asset('app/img/3.jpg') }}" alt="our case">
                                     </div>
                                     <h6 class="text-center case-item__title">Claritas est etiam processus dynamicus</h6>
                                 </div>
@@ -336,7 +336,7 @@
                             <div class="col-lg-4  col-md-4 col-sm-6 col-xs-12">
                                 <div class="case-item">
                                     <div class="case-item__thumb mouseover poster-3d lightbox shadow animation-disabled" data-offset="5">
-                                        <img src="app/img/4.jpg" alt="our case">
+                                        <img src="{{ asset('app/img/4.jpg') }}" alt="our case">
                                     </div>
                                     <h6 class="case-item__title">quod mazim placerat facer possim assum</h6>
                                 </div>
@@ -362,7 +362,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="case-item">
                                     <div class="case-item__thumb">
-                                        <img src="app/img/5.jpg" alt="our case">
+                                        <img src="{{ asset('app/img/5.jpg') }}" alt="our case">
                                     </div>
                                     <h6 class="case-item__title"><a href="#">Investigationes demonstraverunt legere</a></h6>
                                 </div>
@@ -371,7 +371,7 @@
                             <div class="col-lg-4  col-md-4 col-sm-6 col-xs-12">
                                 <div class="case-item">
                                     <div class="case-item__thumb">
-                                        <img src="app/img/2.png" alt="our case">
+                                        <img src="{{ asset('app/img/2.png') }}" alt="our case">
                                     </div>
                                     <h6 class="case-item__title">Claritas est etiam processus dynamicus</h6>
                                 </div>
@@ -380,7 +380,7 @@
                             <div class="col-lg-4  col-md-4 col-sm-6 col-xs-12">
                                 <div class="case-item">
                                     <div class="case-item__thumb mouseover poster-3d lightbox shadow animation-disabled" data-offset="5">
-                                        <img src="app/img/6.jpg" alt="our case">
+                                        <img src="{{ asset('app/img/6.jpg') }}" alt="our case">
                                     </div>
                                     <h6 class="case-item__title">quod mazim placerat facer possim assum</h6>
                                 </div>
@@ -414,9 +414,9 @@
                     </div>
 
                     <div class="images-block">
-                        <img src="app/img/subscr-gear.png" alt="gear" class="gear">
-                        <img src="app/img/subscr1.png" alt="mail" class="mail">
-                        <img src="app/img/subscr-mailopen.png" alt="mail" class="mail-2">
+                        <img src="{{ asset('app/img/subscr-gear.png') }}" alt="gear" class="gear">
+                        <img src="{{ asset('app/img/subscr1.png') }}" alt="mail" class="mail">
+                        <img src="{{ asset('app/img/subscr-mailopen.png') }}" alt="mail" class="mail-2">
                     </div>
                 </div>
             </div>
@@ -557,16 +557,16 @@
 
 <!-- JS Script -->
 
-<script src="app/js/jquery-2.1.4.min.js"></script>
-<script src="app/js/crum-mega-menu.js"></script>
-<script src="app/js/swiper.jquery.min.js"></script>
-<script src="app/js/theme-plugins.js"></script>
-<script src="app/js/main.js"></script>
-<script src="app/js/form-actions.js"></script>
+<script src="{{ asset('app/js/jquery-2.1.4.min.js') }}"></script>
+<script src="{{ asset('app/js/crum-mega-menu.js') }}"></script>
+<script src="{{ asset('app/js/swiper.jquery.min.js') }}"></script>
+<script src="{{ asset('app/js/theme-plugins.js') }}"></script>
+<script src="{{ asset('app/js/main.js') }}"></script>
+<script src="{{ asset('app/js/form-actions.js') }}"></script>
 
-<script src="app/js/velocity.min.js"></script>
-<script src="app/js/ScrollMagic.min.js"></script>
-<script src="app/js/animation.velocity.min.js"></script>
+<script src="{{ asset('app/js/velocity.min.js') }}"></script>
+<script src="{{ asset('app/js/ScrollMagic.min.js') }}"></script>
+<script src="{{ asset('app/js/animation.velocity.min.js') }}"></script>
 
 
 <!-- ...end JS Script -->
