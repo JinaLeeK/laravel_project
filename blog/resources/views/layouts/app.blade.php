@@ -9,15 +9,19 @@
 
    <title>{{ config('app.name', 'Laravel') }}</title>
 
-   <!-- Scripts -->
-   <script src="{{ asset('js/app.js') }}" defer></script>
 
    <!-- Fonts -->
    <link rel="dns-prefetch" href="//fonts.gstatic.com">
    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+
    <!-- Styles -->
    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
+   @yield('styles')
+
+   <!-- Scripts -->
+   <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+
 </head>
 <body>
    <div id="app">
@@ -113,7 +117,11 @@
                   <li class="list-group-item">
                      <a href="{{ route('user.profile') }}">My Profile</a>
                   </li>
-
+               @if(Auth::user()->admin)
+                  <li class="list-group-item">
+                     <a href="{{ route('settings') }}">Settings</a>
+                  </li>
+               @endif
                </ul>
                @endif
             </div>
@@ -131,6 +139,8 @@
       @elseif(Session::has('info'))
          toastr.info("{{ Session::get('info') }}")
       @endif
+
    </script>
+   @yield('scripts')
 </body>
 </html>
