@@ -13,8 +13,19 @@
 
 Route::get('/', [
    'uses' => 'FrontEndController@index',
-   'as'   => 'home'
+   'as'   => 'front_home'
 ]);
+
+Route::get('/post/{slug}', [
+   'uses' => 'FrontEndController@singlePost',
+   'as'   => 'post'
+]);
+
+Route::get('/category/{id}', [
+   'uses' => 'FrontEndController@category',
+   'as'   => 'category'
+]);
+
 
 Auth::routes();
 
