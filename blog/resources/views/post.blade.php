@@ -22,7 +22,7 @@
                      <div class="post__author author vcard">
                         Posted by
                         <div class="post__author-name fn">
-                           <a href="#" class="post__author-link">Admin</a>
+                           <a href="{{ route('author', ['id'=>$post->user->id]) }}" class="post__author-link">{{ $post->user->name }}</a>
                         </div>
                      </div>
                      <span class="post__date">
@@ -47,7 +47,7 @@
                      <div class="widget w-tags">
                         <div class="tags-wrap">
                         @foreach($post->tags as $tag)
-                           <a href="#" class="w-tags-item">{{ $tag->tag }}</a>
+                           <a href="{{ route('tag', ['id'=>$tag->id]) }}" class="w-tags-item">{{ $tag->tag }}</a>
                         @endforeach
                         </div>
                      </div>
@@ -55,53 +55,31 @@
                   </div>
                </div>
 
-               <div class="socials">Share:
-                  <a href="#" class="social__item">
-                     <i class="seoicon-social-facebook"></i>
-                  </a>
-                  <a href="#" class="social__item">
-                     <i class="seoicon-social-twitter"></i>
-                  </a>
-                  <a href="#" class="social__item">
-                     <i class="seoicon-social-linkedin"></i>
-                  </a>
-                  <a href="#" class="social__item">
-                     <i class="seoicon-social-google-plus"></i>
-                  </a>
-                  <a href="#" class="social__item">
-                     <i class="seoicon-social-pinterest"></i>
-                  </a>
+               <div class="socials text-center">
+                  <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                  <div class="addthis_inline_share_toolbox"></div>
                </div>
             </article>
 
             <div class="blog-details-author">
 
                <div class="blog-details-author-thumb">
-                  <img src="{{ asset('app/img/blog-details-author.png') }}" alt="Author">
+                  <img src="{{ $post->user->profile->avatar }}" alt="Author">
                </div>
 
                <div class="blog-details-author-content">
                   <div class="author-info">
-                     <h5 class="author-name">Philip Demarco</h5>
-                     <p class="author-info">SEO Specialist</p>
+                     <h5 class="author-name">
+                        <a href="{{ route('author', ['id'=>$post->user->id]) }}">{{ ucfirst($post->user->name) }}</a></h5>
+                     <!-- <p class="author-info">SEO Specialist</p> -->
                   </div>
-                  <p class="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                     nonummy nibh euismod.
-                  </p>
+                  <p class="text">{{ $post->user->profile->about }}</p>
                   <div class="socials">
-                     <a href="#" class="social__item">
+                     <a href="{{ $post->user->profile->facebook }}" class="social__item">
                         <img src="{{ asset('app/svg/circle-facebook.svg') }}" alt="facebook">
                      </a>
 
-                     <a href="#" class="social__item">
-                        <img src="{{ asset('app/svg/twitter.svg') }}" alt="twitter">
-                     </a>
-
-                     <a href="#" class="social__item">
-                        <img src="{{ asset('app/svg/google.svg') }}" alt="google">
-                     </a>
-
-                     <a href="#" class="social__item">
+                     <a href="{{ $post->user->profile->youtube }}" class="social__item">
                         <img src="{{ asset('app/svg/youtube.svg') }}" alt="youtube">
                      </a>
 
@@ -128,7 +106,7 @@
                      <use xlink:href="#arrow-left"></use>
                   </svg>
                   <div class="btn-content">
-                     <div class="btn-content-title">Next Post</div>
+                     <div class="btn-content-title">Prev Post</div>
                      <p class="btn-content-subtitle">{{ $prev->title }}</p>
                   </div>
                </a>
@@ -146,15 +124,10 @@
                      <span class="long-line"></span>
                   </div>
                </div>
+               @include('includes.disqus')
             </div>
-
-            <div class="row">
-
-            </div>
-
-
+            <br><br><br>
          </div>
-
 <!-- End Post Details -->
 
 <!-- Sidebar-->
@@ -165,4 +138,9 @@
       </main>
    </div>
 </div>
+@stop
+
+@section('scripts')
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c2510229533d2b8"></script>
 @stop

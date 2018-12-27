@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Category;
 use App\Post;
 use App\Tag;
@@ -103,8 +104,8 @@ class PostsController extends Controller
          }
       }
 
-      $aPost['slug'] = str_slug($request->title);
-
+      $aPost['slug']    = str_slug($request->title);
+      $aPost['user_id'] = Auth::id();
       $post = Post::create($aPost);
 
       $post->tags()->attach($request->tags);
@@ -166,7 +167,7 @@ class PostsController extends Controller
       }
 
       $post->title       = $request->title;
-      $post->slug        = str_slug($reequest->title);
+      $post->slug        = str_slug($request->title);
       $post->content     = $request->content;
       $post->category_id = $request->category_id;
       $post->save();

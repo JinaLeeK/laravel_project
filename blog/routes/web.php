@@ -26,6 +26,32 @@ Route::get('/category/{id}', [
    'as'   => 'category'
 ]);
 
+Route::get('/tag/{id}', [
+   'uses' => 'FrontEndController@tag',
+   'as'   => 'tag'
+]);
+
+Route::get('/user/{id}', [
+   'uses' => 'FrontEndController@postsByUser',
+   'as'   => 'author'
+]);
+
+Route::post('/subscribe', [
+   'uses'   => 'FrontEndController@subscribe',
+   'as'     => 'subscribe'
+]);
+
+Route::get('/results', function() {
+   $posts = App\Post::where('title', 'like', '%'.request('query').'%')->get();
+
+   return view('results')->with('posts', $posts)
+                           ->with('title', 'Search results : '.request('query'))
+                           ->with('categories', App\Category::take(4)->get())
+                           ->with('setting', App\Setting::first())
+                           ->with('tags', App\Tag::all());
+
+});
+
 
 Auth::routes();
 
@@ -37,7 +63,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function() {
 
    Route::get('/', [
       'uses' => 'HomeController@index',
-      'as'   => 'home'
+      'as'   => 'dashboard'
    ]);
 
 // post routes

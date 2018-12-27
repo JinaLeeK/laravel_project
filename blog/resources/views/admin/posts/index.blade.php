@@ -13,6 +13,7 @@
          <thead>
             <th>Image</th>
             <th>Title</th>
+            <th>Author</th>
             <th>Category</th>
             <th>Edit</th>
             <th>Trash</th>
@@ -23,6 +24,7 @@
                <tr>
                   <td><img src="{{$post->featured}}" alt="{{$post->title}}" width="90px" height="50px" style="object-fit:center;"/></td>
                   <td>{{ $post->title }}</td>
+                  <td>{{ $post->user->name }}</td>
                   <td>{{ $post->category->name }}</td>
                   <td><a href="{{ route('post.edit',['id'=>$post->id]) }}" class="btn btn-sm btn-info">Edit</a></td>
                   <td><a href="{{ route('post.delete',['id'=>$post->id]) }}" class="btn btn-sm btn-danger">Trash</a></td>

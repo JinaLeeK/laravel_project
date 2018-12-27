@@ -76,13 +76,13 @@
       </div>
    </nav>
 
-      <div class="container">
+      <div class="container" style="padding-top:30px">
          <div class="row">
             <div class="col-lg-4">
                @if(Auth::check())
                <ul class="list-group">
                   <li class="list-group-item">
-                     <a href="{{ route('home') }}">Home</a>
+                     <a href="{{ route('dashboard') }}">Home</a>
                   </li>
                   <li class="list-group-item">
                      <a href="{{ route('categories') }}">All Categories</a>

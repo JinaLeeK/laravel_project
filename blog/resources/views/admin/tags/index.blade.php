@@ -8,15 +8,15 @@
    <div class="card-body">
       <table class="table table-hover">
          <thead>
-            <th>Tag name</th>
-            <th>Editing</th>
-            <th>Deleting</th>
+            <th style="border-top:0">Tag name</th>
+            <th style="border-top:0">Editing</th>
+            <th style="border-top:0">Deleting</th>
          </thead>
          <tbody>
             @if($tags->count()>0)
                @foreach($tags as $tag)
                <tr>
-                  <td>{{$tag->tag}}</td>
+                  <td>{{$tag->tag}} ({{ $tag->posts->count() }})</td>
                   <td>
                      <a href="{{ route('tag.edit', ['id'=>$tag->id]) }}" class="btn btn-sm btn-info">Edit</a>
                   </td>

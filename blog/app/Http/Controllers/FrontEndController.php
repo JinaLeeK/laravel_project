@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+use Newsletter;
+
 use App\Setting;
 use App\Category;
 use App\Post;
 use App\Tag;
+use App\User;
 
 use Illuminate\Http\Request;
 
@@ -40,13 +44,44 @@ class FrontEndController extends Controller
 
    public function category($id) {
       return view('category')
-               ->with('title', Setting::first()->site_name)
+               ->with('title', Category::find($id)->name)
                ->with('categories', Category::take(4)->get())
                ->with('setting', Setting::first())
-               ->with('categories', Category::take(4)->get())
                ->with('category', Category::find($id))
                ->with('tags', Tag::all());
 
    }
-    //
+
+
+   public function postsByUser($id) {
+      $posts = Post::where('user_id',$id)->get();
+
+      return view('posts_by_user')
+               ->with('title', 'Posts By '.ucfirst(User::find($id)->name) )
+               ->with('categories', Category::take(4)->get())
+               ->with('setting', Setting::first())
+               ->with('tags', Tag::all())
+               ->with('posts', $posts);
+
+   }
+
+   public function tag($id) {
+      return view('tag')
+               ->with('title', Tag::find($id)->tag)
+               ->with('categories', Category::take(4)->get())
+               ->with('setting', Setting::first())
+               ->with('tag', Tag::find($id))
+               ->with('tags', Tag::all());
+
+   }
+
+   public function subscribe() {
+
+      Newsletter::subscribe(request('email'));
+
+      Session::flash('subscribe', 'Subscribed successfully');
+
+      return redirect()->back();
+   }
+       //
 }
