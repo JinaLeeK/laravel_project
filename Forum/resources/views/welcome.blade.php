@@ -4,10 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>test</title>
+        <title>Forum</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
+        <link rel="stylesheet" href="{{asset('css/toaster.min.css')}}">
 
         <!-- Styles -->
         <style>
@@ -81,18 +83,22 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Forum App
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="{{ route('social.auth',['provider'=>'github']) }}">Github</a>
                 </div>
             </div>
         </div>
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/toatr.min.js') }}"></script>
+        <script type="text/javascript">
+         @if(Session::has('success'))
+            toastr.success("{{ Session::get('success')}}");
+         @elseif(Session::has('danger'))
+            toastr.danger("{{ Session::get('danger') }}");
+         @endif
+        </script>
     </body>
 </html>
