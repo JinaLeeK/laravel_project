@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -76,5 +77,14 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset('js/toatr.min.js') }}"></script>
+      <script type="text/javascript">
+       @if(Session::has('success'))
+          toastr.success("{{ Session::get('success')}}");
+       @elseif(Session::has('danger'))
+          toastr.danger("{{ Session::get('danger') }}");
+       @endif
+   </script>
+
 </body>
 </html>
