@@ -10,7 +10,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -73,11 +72,34 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <div class="container" style="margin-top:20px;">
+           <div class="row">
+              <div class="col-md-4">
+                 <a href="{{ route('discuss.create') }}" class="btn btn-primary form-control">Create a new discussion</a>
+                 <br>
+                <div class="card" style="margin-top:20px;">
+                   <div class="card-header">
+                      Channels
+                   </div>
+                   <div class="card-body">
+                      <ul class="list-group">
+                         @foreach($channels as $channel)
+                         <li class="list-group-item">
+                            {{ $channel->title }}
+                         </li>
+                         @endforeach
+                      </ul>
+                   </div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                 @yield('content')
+              </div>
+           </div>
+        </div>
     </div>
-    <script src="{{ asset('js/toatr.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
       <script type="text/javascript">
        @if(Session::has('success'))
           toastr.success("{{ Session::get('success')}}");

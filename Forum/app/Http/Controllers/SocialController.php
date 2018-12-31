@@ -26,7 +26,7 @@ class SocialController extends Controller
          $user->save();
       });
       Session::flash('success','Successfully loggedin');
-      return redirect()->route('home');
+      return redirect()->route('forum');
 
       // try {
       //    SocialAuth::login($provider, function($user, $details) {
