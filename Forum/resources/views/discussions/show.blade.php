@@ -30,7 +30,16 @@
          {{ $r->content }}
       </p>
    </div>
-   <div class="card-footer"><p>Like</p></div>
+   <div class="card-footer">
+      <p>
+      @if( $r->is_liked_by_auth_user() )
+         <a href="{{ route('reply.unlike', ['id'=>$r->id]) }}" class="btn btn-danger btn-sm">Unlike</a>
+      @else
+         <a href="{{ route('reply.like', ['id'=>$r->id]) }}" class="btn btn-success btn-sm">Like</a>
+      @endif
+      ( {{ $r->likes->count() }} )
+      </p>
+   </div>
 </div>
 <br>
 @endforeach

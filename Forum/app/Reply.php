@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Reply extends Model
 {
@@ -15,6 +16,20 @@ class Reply extends Model
 
    public function user() {
       return $this->belongsTo('App\user');
+   }
+
+   public function likes() {
+      return $this->hasMany('App\Like');
+   }
+
+   public function is_liked_by_auth_user() {
+      $id = Auth::id();
+
+      foreach($this->likes as $like) {
+         if($like->user->id == $id) return true;
+      }
+
+      return false;
    }
 
     //
