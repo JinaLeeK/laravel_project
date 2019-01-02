@@ -16,7 +16,8 @@ class UsersTableSeeder extends Seeder
          'password'  => bcrypt('admin'),
          'email'     => 'admin@test.com',
          'admin'     => 1,
-         'avatar'    => asset('avatars/1.png')
+         'avatar'    => asset('avatars/1.png'),
+         'points'    => 50
       ]);
         //
       App\User::create([
@@ -24,7 +25,8 @@ class UsersTableSeeder extends Seeder
          'password'  => bcrypt('test'),
          'email'     => 'test@test.com',
          'admin'     => 0,
-         'avatar'    => asset('avatars/1.png')
+         'avatar'    => asset('avatars/2.png'),
+         'points'    => 50
       ]);
         //
     }

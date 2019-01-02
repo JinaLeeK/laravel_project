@@ -7,6 +7,7 @@ use Auth;
 use Session;
 
 use App\Like;
+use App\Reply;
 
 class RepliesController extends Controller
 {
@@ -31,4 +32,35 @@ class RepliesController extends Controller
       return redirect()->back();
 
    }
+
+   public function best_answer($id) {
+      $reply = Reply::find($id);
+      $reply->best_answer = 1;
+      $reply->save();
+
+      $reply->user->points += 50;
+      $reply->user->save();
+
+      Session::flash('success','Reply has been marked as the best answer');
+      return redirect()->back();
+   }
+
+   public function edit($id) {
+      return view('replies.edit',['r'=>Reply::find($id)]);
+
+   }
+
+   public function update($id) {
+      $r = request();
+      $this->validate($r, [
+         'content' => 'required'
+      ]);
+
+      $d = Reply::find($id);
+      $d->content = $r->content;
+      $d->save();
+
+      return redirect()->route('discussion',["slug"=>$d->discussion->slug]);
+   }
+
 }

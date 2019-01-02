@@ -12,13 +12,13 @@ class ChannelsTableSeeder extends Seeder
     public function run()
     {
       $channels = [
-         ['title'  => 'Laravel' ],
-         ['title' => 'CSS' ],
-         ['title' => 'JavaScript' ],
-         ['title' => 'Vuewjs' ],
-         ['title' => 'Wordpress' ],
-         ['title' => 'Nodejs' ],
-         ['title' => 'Homestead' ]
+         ['title'  => 'Laravel', 'slug'=>'laravel' ],
+         ['title' => 'CSS','slug'=>'css' ],
+         ['title' => 'JavaScript','slug'=>'javascript' ],
+         ['title' => 'Vuewjs','slug'=>'vuewjs' ],
+         ['title' => 'Wordpress','slug'=>'wordpress' ],
+         ['title' => 'Nodejs','slug'=>'nodejs' ],
+         ['title' => 'Homestead','slug'=>'homestead' ]
       ];
       foreach($channels as $channel){
          App\Channel::create($channel);

@@ -67,27 +67,16 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
             <div class="content">
                 <div class="title m-b-md">
-                    Forum App
+                    <a href="/forum" style="text-decoration:none;">Forum App</a>
                 </div>
 
                 <div class="links">
                     <a href="{{ route('social.auth',['provider'=>'github']) }}">Github</a>
+                </div>
+                <div class="links">
+                    <a href="/login">Email Login</a>
                 </div>
             </div>
         </div>

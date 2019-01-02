@@ -38,7 +38,7 @@ Route::group(['middleware'=>'auth'], function() {
 
    Route::resource('channels', 'ChannelsController');
 
-   Route::get('discuss/create', [
+   Route::get('discuss/create/new', [
       'uses'   => 'DiscussionsController@create',
       'as'     => 'discuss.create'
    ]);
@@ -46,6 +46,27 @@ Route::group(['middleware'=>'auth'], function() {
    Route::post('discuss/store', [
       'uses'   => 'DiscussionsController@store',
       'as'     => 'discuss.store'
+   ]);
+
+
+   Route::get('/discussion/edit/{id}', [
+      'uses'   => 'DiscussionsController@edit',
+      'as'     => 'discussion.edit'
+   ]);
+
+   Route::post('/discussion/update/{id}', [
+      'uses'   => 'DiscussionsController@update',
+      'as'     => 'discussion.update'
+   ]);
+
+   Route::get('/discussion/watch/{id}', [
+      'uses'   => 'WatchersController@watch',
+      'as'     => 'discussion.watch'
+   ]);
+
+   Route::get('/discussion/unwatch/{id}', [
+      'uses'   => 'WatchersController@unwatch',
+      'as'     => 'discussion.unwatch'
    ]);
 
    Route::post('/discussion/reply/{id}', [
@@ -63,9 +84,30 @@ Route::group(['middleware'=>'auth'], function() {
       'as'     => 'reply.unlike'
    ]);
 
+   Route::get('/reply/edit/{id}', [
+      'uses'   => 'RepliesController@edit',
+      'as'     => 'reply.edit'
+   ]);
+
+   Route::post('/reply/update/{id}', [
+      'uses'   => 'RepliesController@update',
+      'as'     => 'reply.update'
+   ]);
+
+
+   Route::get('/discussion/best/reply/{id}', [
+      'uses'   => 'RepliesController@best_answer',
+      'as'     => 'reply.best.answer'
+   ]);
+
 });
 
 Route::get('discuss/{slug}', [
    'uses'   => 'DiscussionsController@show',
    'as'     => 'discussion'
+]);
+
+Route::get('channel/{slug}', [
+   'uses'   => 'ForumsController@channel',
+   'as'     => 'channel.forum'
 ]);

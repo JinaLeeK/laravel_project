@@ -4,9 +4,17 @@
 <div class="card">
    <div class="card-header">
       <img src="{{ $discussion->user->avatar }}" width="40px" alt="">&nbsp;&nbsp;
-      <span>{{ $discussion->user->name }}, <b>{{ $discussion->created_at->diffForHumans() }}</b></span>
+      <span>{{ $discussion->user->name }}, <b>{{ $discussion->user->points }}</b></span>
+      @if(Auth::id() == $discussion->user_id)
+         <a href="{{ route('discussion.edit',['id'=>$discussion->id]) }}" class="btn btn-info btn-sm float-right">Edit</a>
+      @endif
+
       <span>
-         <a href="{{ route('discussion', ['slug'=>$discussion->slug]) }}" class="btn btn-primary btn-sm float-right">View</a>
+         @if($discussion->is_being_watched_by_auth($discussion->id))
+            <a href="{{ route('discussion.unwatch', ['id'=>$discussion->id]) }}" class="btn btn-danger btn-sm float-right">unwatch</a>
+         @else
+            <a href="{{ route('discussion.watch', ['id'=>$discussion->id]) }}" class="btn btn-success btn-sm float-right">watch</a>
+         @endif
       </span>
    </div>
    <div class="card-body">
@@ -24,6 +32,17 @@
    <div class="card-header">
       <img src="{{ $r->user->avatar }}" width="40px" alt="">&nbsp;&nbsp;
       <span>{{ $r->user->name }}, <b>{{ $r->created_at->diffForHumans() }}</b></span>
+      <span>({{$r->user->points}})</span>
+      @if($best_answer)
+         @if($best_answer->id == $r->id)
+            <span class="float-right bg-success">Best answer!</span>
+      @else
+         @if(Auth::id() == $discussion->user_id)
+            <a href="{{ route('reply.best.answer',['id'=>$r->id] )}}" class="btn btn-sm btn-info float-right">Mark as best answer</a>
+         @endif
+      @endif
+
+      
    </div>
    <div class="card-body">
       <p class="">
@@ -43,6 +62,7 @@
 </div>
 <br>
 @endforeach
+@if(Auth::check())
 <div class="card">
    <div class="card-body">
       <form class="" action="{{ route('discussion.reply', ['id'=>$discussion->id]) }}" method="post">
@@ -58,4 +78,9 @@
       </form>
    </div>
 </div>
+@else
+<div class="text-center">
+   <h2>Sign in to leave a reply</h2>
+</div>
+@endif
 @endsection
