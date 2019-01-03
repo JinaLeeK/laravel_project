@@ -20,7 +20,7 @@
    <div class="card-body">
       <h3 class="text-center">{{ $discussion->title }}</h3>
       <p class="text-center">
-         {{ $discussion->content }}
+         {!! Markdown::convertToHtml($discussion->content) !!}
       </p>
    </div>
    <div class="card-footer">{{ $discussion->replies->count() }} Replies</div>
@@ -36,13 +36,17 @@
       @if($best_answer)
          @if($best_answer->id == $r->id)
             <span class="float-right bg-success">Best answer!</span>
+         @endif
       @else
          @if(Auth::id() == $discussion->user_id)
             <a href="{{ route('reply.best.answer',['id'=>$r->id] )}}" class="btn btn-sm btn-info float-right">Mark as best answer</a>
          @endif
       @endif
 
-      
+      @if(Auth::id() == $r->user_id && !$r->best_answer)
+         <a href="{{ route('reply.edit',['id'=>$r->id] )}}" class="btn btn-sm btn-warning float-right">Edit</a>
+      @endif
+
    </div>
    <div class="card-body">
       <p class="">

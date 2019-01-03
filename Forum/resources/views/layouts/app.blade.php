@@ -14,7 +14,7 @@
    <!-- Fonts -->
    <link rel="dns-prefetch" href="//fonts.gstatic.com">
    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/atom-one-dark.min.css" />
    <!-- Styles -->
    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
    <script src="{{ asset('js/app.js') }}" defer></script>
@@ -106,9 +106,15 @@
                </div>
             </div>
 
+
             <div class="card" style="margin-top:20px;">
                <div class="card-header">
                   Channels
+                  @if(Auth::check())
+                     @if(Auth::user()->admin)
+                        <a href="{{ route('channels.index') }}" class="btn btn-sm btn-info float-right">Edit</a>
+                     @endif
+                  @endif
                </div>
                <div class="card-body">
                   <ul class="list-group">
@@ -132,6 +138,8 @@
       </div>
    </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script type="text/javascript">
 @if(Session::has('success'))
