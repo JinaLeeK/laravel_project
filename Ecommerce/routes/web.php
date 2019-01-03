@@ -11,10 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+   'uses'   => 'FrontEndController@index',
+   'as'     => 'shop'
+]);
+
+Route::get('/product/{id}', [
+   'uses'   => 'FrontEndController@show',
+   'as'     => 'product.show'
+]);
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group([ 'middleware'=>'auth', 'prefix'=>'admin' ], function() {
+   Route::resource('products', 'ProductsController');
+});
