@@ -8,7 +8,7 @@
 
          <div class="row mb30">
          @foreach($products as $p)
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="min-height:574px;">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="min-height:574px; margin-bottom:10px">
                <div class="books-item">
                   <div class="books-item-thumb">
                      <img src="{{ asset($p->image) }}" alt="book">
@@ -24,11 +24,14 @@
 
                      <div class="books-price">${{ number_format($p->price) }}</div>
                   </div>
-
-                  <a href="19_cart.html" class="btn btn-small btn--dark add">
-                     <span class="text">Add to Cart</span>
-                     <i class="seoicon-commerce"></i>
-                  </a>
+                  <form class="" action="{{ route('cart.add',['id'=>$p->id]) }}" method="post">
+                     {{ csrf_field() }}
+                     <input type="hidden" name="qty" value="1">
+                     <button type="type" class="btn btn-small btn--dark add">
+                        <span class="text">Add to Cart</span>
+                        <i class="seoicon-commerce"></i>
+                     </a>
+                  </form>
 
                </div>
             </div>

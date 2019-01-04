@@ -41,11 +41,11 @@
             <ul class="nav-add">
                 <li class="cart">
 
-                    <a href="#" class="js-cart-animate">
+                    <a href="/cart" class="js-cart-animate">
                         <i class="seoicon-basket"></i>
-                        <span class="cart-count">0</span>
+                        <span class="cart-count">{{ Cart::getTotalQuantity() }}</span>
                     </a>
-
+                    @if(Cart::isEmpty())
                     <div class="cart-popup-wrap">
                         <div class="popup-cart">
                             <h4 class="title-cart">No products in the cart!</h4>
@@ -55,6 +55,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
 
                 </li>
             </ul>
@@ -69,7 +70,8 @@
       <div class="row pt120">
          <div class="col-lg-8 col-lg-offset-2">
             <div class="heading align-center mb60">
-               <h4 class="h1 heading-title">Udemy E-commerce Platform</h4>
+               <h4 class="h1 heading-title">
+                  <a href="{{ route('shop') }}">Udemy E-commerce Platform</a></h4>
                <p class="heading-text">Buy books, and we ship to you.
                </p>
             </div>
@@ -104,7 +106,7 @@
 <script src="{{ asset('app/js/velocity.min.js') }}"></script>
 <script src="{{ asset('app/js/ScrollMagic.min.js') }}"></script>
 <script src="{{ asset('app/js/animation.velocity.min.js') }}"></script>
-
+@yield('scripts')
 <!-- ...end JS Script -->
 
 

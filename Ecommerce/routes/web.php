@@ -21,6 +21,42 @@ Route::get('/product/{id}', [
    'as'     => 'product.show'
 ]);
 
+Route::get('/checkout', [
+   'uses'   => 'CartController@checkout',
+   'as'     => 'checkout'
+]);
+
+Route::group(['prefix'=>'cart'], function() {
+
+   Route::get('/', [
+      'uses'   => 'CartController@cart',
+      'as'     => 'cart'
+   ]);
+
+
+   Route::post('/add/{id}', [
+      'uses'   => 'CartController@add',
+      'as'     => 'cart.add'
+   ]);
+
+   Route::get('/remove/{id}', [
+      'uses'   => 'CartController@remove',
+      'as'     => 'cart.remove'
+   ]);
+
+   Route::get('/destroy', [
+      'uses'   => 'CartController@destroy',
+      'as'     => 'cart.destroy'
+   ]);
+
+   Route::post('edit', [
+      'uses'   => 'CartController@edit',
+      'as'     => 'cart.edit'
+   ]);
+
+
+
+});
 
 Auth::routes();
 

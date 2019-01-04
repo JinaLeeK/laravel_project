@@ -15,5 +15,6 @@ class FrontEndController extends Controller
    public function show($id) {
       return view('product-detail', ['p'=>Product::find($id)]);
    }
-    //
+
+
 }

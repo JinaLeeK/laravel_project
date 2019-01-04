@@ -1,4 +1,4 @@
-@extends('layouts.fronted')
+@extends('layouts.frontend')
 <!-- Books products grid -->
 
 @section('content')
@@ -21,145 +21,48 @@
                            </tr>
                         </thead>
                         <tbody>
-
+                        @foreach($products as $p)
                            <tr class="cart_item">
-
                               <td class="product-thumbnail">
-
                                  <div class="cart-product__item">
                                     <div class="cart-product-content">
-                                       <h5 class="cart-product-title">Search Marketing</h5>
+                                       <h5 class="cart-product-title">{{ $p->name}}</h5>
                                     </div>
                                  </div>
                               </td>
 
                               <td class="product-quantity">
-
                                  <div class="quantity">
-                                    x 1
+                                    x {{ $p->quantity }}
                                  </div>
-
                               </td>
 
                               <td class="product-subtotal">
-                                 <h5 class="total amount">$58.00</h5>
+                                 <h5 class="total amount">${{ number_format(($p->quantity)*($p->price)) }}</h5>
                               </td>
 
                            </tr>
-
-                           <tr class="cart_item">
-
-                              <td class="product-thumbnail">
-
-                                 <div class="cart-product__item">
-
-                                    <div class="cart-product-content">
-                                       <h5 class="cart-product-title">SEO Community</h5>
-                                    </div>
-                                 </div>
-                              </td>
-
-
-                              <td class="product-quantity">
-
-                                 <div class="quantity">
-                                    x 2
-                                 </div>
-
-                              </td>
-
-                              <td class="product-subtotal">
-                                 <h5 class="total amount">$33.98</h5>
-                              </td>
-
+                        @endforeach
+                           <tr>
+                              <td colspan="100">${{ number_format($total) }}</td>
                            </tr>
 
-                           <tr class="cart_item">
-
-
-                              <td class="product-thumbnail">
-
-                                 <div class="cart-product__item">
-
-                                    <div class="cart-product-content">
-                                       <h5 class="cart-product-title">Web Analytics</h5>
-                                    </div>
-                                 </div>
-                              </td>
-
-                              <td class="product-quantity">
-
-                                 <div class="quantity">
-                                    x 1
-                                 </div>
-
-                              </td>
-
-                              <td class="product-subtotal">
-                                 <h5 class="total amount">$8.99</h5>
-                              </td>
-
-                           </tr>
-
-                           <tr class="cart_item subtotal">
-
-                              <td class="product-thumbnail">
-
-
-                                 <div class="cart-product-content">
-                                    <h5 class="cart-product-title">	Subtotal:</h5>
-                                 </div>
-
-
-                              </td>
-
-                              <td class="product-quantity">
-
-                              </td>
-
-                              <td class="product-subtotal">
-                                 <h5 class="total amount">$100.97</h5>
-                              </td>
-                           </tr>
-
-                           <tr class="cart_item total">
-
-                              <td class="product-thumbnail">
-
-
-                                 <div class="cart-product-content">
-                                    <h5 class="cart-product-title">Total:</h5>
-                                 </div>
-
-
-                              </td>
-
-                              <td class="product-quantity">
-
-                              </td>
-
-                              <td class="product-subtotal">
-                                 <h5 class="total amount">$100.97</h5>
-                              </td>
-                           </tr>
-
-                        </tbody>
                      </table>
 
                      <div class="cheque">
 
                         <div class="logos">
                            <a href="#" class="logos-item">
-                              <img src="img/visa.png" alt="Visa">
+                              <img src="{{ asset("app/img/visa.png") }}" alt="Visa">
                            </a>
                            <a href="#" class="logos-item">
-                              <img src="img/mastercard.png" alt="MasterCard">
+                              <img src="{{ asset("app/img/mastercard.png") }}" alt="MasterCard">
                            </a>
                            <a href="#" class="logos-item">
-                              <img src="img/discover.png" alt="DISCOVER">
+                              <img src="{{ asset("app/img/discover.png") }}" alt="DISCOVER">
                            </a>
                            <a href="#" class="logos-item">
-                              <img src="img/amex.png" alt="Amex">
+                              <img src="{{ asset("app/img/amex.png") }}" alt="Amex">
                            </a>
 
                            <span style="float: right;">
@@ -191,4 +94,4 @@
 <!-- End Books products grid -->
 
 
-@end
+@stop
