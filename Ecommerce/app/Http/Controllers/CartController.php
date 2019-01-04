@@ -9,6 +9,10 @@ use App\Product;
 
 class CartController extends Controller
 {
+   public function __contruct() {
+
+   }
+
    public function add($id) {
       $product = Product::find($id);
 
@@ -24,10 +28,6 @@ class CartController extends Controller
       return redirect()->back();
    }
 
-   public function checkout() {
-      return view('checkout', ['products' => Cart::getContent(), 'total'=>Cart::getTotal() ]);
-   }
-
    public function cart() {
       return view('cart');
    }
@@ -41,6 +41,7 @@ class CartController extends Controller
 
    public function destroy() {
       Cart::clear();
+      Cart::clearCartConditions();
 
       return redirect()->route('shop');
    }

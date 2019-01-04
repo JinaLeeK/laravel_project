@@ -10,10 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', [
    'uses'   => 'FrontEndController@index',
    'as'     => 'shop'
+]);
+
+Route::post('/cart/payment', [
+   'uses'   => 'CheckoutController@payment',
+   'as'     => 'cart.payment'
 ]);
 
 Route::get('/product/{id}', [
@@ -22,7 +26,7 @@ Route::get('/product/{id}', [
 ]);
 
 Route::get('/checkout', [
-   'uses'   => 'CartController@checkout',
+   'uses'   => 'CheckoutController@index',
    'as'     => 'checkout'
 ]);
 

@@ -54,7 +54,7 @@
                                 <span class="text">view all catalog</span>
                             </a>
                             @else
-                            <h4 class="title-cart align-center">${{ number_format(Cart::getTotal()) }}</h4>
+                            <h4 class="title-cart align-center">${{ number_format(Cart::getSubTotal()) }}</h4>
                             <br>
                             <a href="{{ route('cart') }}" class="btn btn-small btn--dark">
                                 <span class="text">View Cart</span>

@@ -108,7 +108,7 @@
 
                <div class="cart-total">
                   <h3 class="cart-total-title">Cart Totals</h3>
-                  <h5 class="cart-total-total">Total: <span class="price">${{ number_format(Cart::getTotal()) }}</span></h5>
+                  <h5 class="cart-total-total">Total: <span class="price">${{ number_format(Cart::getSubTotal()) }}</span></h5>
                   <a href="{{ route('checkout') }}" class="btn btn-medium btn--light-green btn-hover-shadow">
                      <span class="text">Checkout</span>
                      <span class="semicircle"></span>

@@ -11,7 +11,7 @@
             <div class="col-lg-12">
                <div class="order">
                   <h2 class="h1 order-title text-center">Your Order</h2>
-                  <form action="#" method="post" class="cart-main">
+                  <form action="{{ route('cart.payment' )}}" method="post" class="cart-main">
                      <table class="shop_table cart">
                         <thead class="cart-product-wrap-title-main">
                            <tr>
@@ -43,10 +43,42 @@
 
                            </tr>
                         @endforeach
-                           <tr>
-                              <td colspan="100">${{ number_format( Cart::getTotal() ) }}</td>
-                           </tr>
+                        <tr class="cart_item subtotal">
+                           <td class="product-thumbnail">
+                              <div class="cart-product__item">
+                                 <div class="cart-product-content">
+                                    <h5 class="cart-product-title">Subtotal :</h5>
+                                 </div>
+                              </div>
+                           </td>
 
+                           <td class="product-quantity">
+                              <div class="quantity">{{ Cart::getTotalQuantity() }}</div>
+                           </td>
+
+                           <td class="product-subtotal">
+                              <h5 class="total amount">${{ number_format( Cart::getSubTotal() ) }}</h5>
+                           </td>
+
+                        </tr>
+                        <tr class="cart_item total">
+                           <td class="product-thumbnail">
+                              <div class="cart-product__item">
+                                 <div class="cart-product-content">
+                                    <h5 class="cart-product-title">Total :</h5>
+                                 </div>
+                              </div>
+                           </td>
+
+                           <td class="product-quantity">
+                              <div class="quantity">
+                              </div>
+                           </td>
+
+                           <td class="product-subtotal">
+                              <h5 class="total amount">${{ number_format( Cart::getTotal() ) }}</h5>
+                           </td>
+                        </tr>
                      </table>
 
                      <div class="cheque">
@@ -66,18 +98,17 @@
                            </a>
 
                            <span style="float: right;">
-                              <form action="/your-server-side-code" method="POST">
+                                 {{ csrf_field() }}
                                  <script
                                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                 data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-                                 data-amount="999"
+                                 data-key="pk_test_YTqJBO6eswpGNP7Vwmby3bXg"
+                                 data-amount="{{ Cart::getTotal() }}"
                                  data-name="Stripe.com"
                                  data-description="Widget"
                                  data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                  data-locale="auto"
                                  data-zip-code="true">
                                  </script>
-                              </form>
                            </span>
                         </div>
                      </div>
