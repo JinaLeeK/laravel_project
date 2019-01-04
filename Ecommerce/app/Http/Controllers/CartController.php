@@ -29,11 +29,7 @@ class CartController extends Controller
    }
 
    public function cart() {
-      return view('cart', [
-         'total_qty'    => Cart::getTotalQuantity(),
-         'products'     => Cart::getContent(),
-         'total_price'  => Cart::getTotal()
-      ]);
+      return view('cart');
    }
 
    public function remove($id) {
@@ -49,9 +45,12 @@ class CartController extends Controller
       return redirect()->route('shop');
    }
 
-   public function edit() {
-      return Cart::getContent()->toJson();
+   public function qty_update($id, $qty) {
+      Cart::update($id, ['quantity'=>$qty]);
+
+      return redirect()->back();
    }
+
 
     //
 }

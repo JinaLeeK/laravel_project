@@ -41,21 +41,27 @@
             <ul class="nav-add">
                 <li class="cart">
 
-                    <a href="/cart" class="js-cart-animate">
+                    <a href="#" class="js-cart-animate">
                         <i class="seoicon-basket"></i>
                         <span class="cart-count">{{ Cart::getTotalQuantity() }}</span>
                     </a>
-                    @if(Cart::isEmpty())
                     <div class="cart-popup-wrap">
                         <div class="popup-cart">
+                           @if(Cart::isEmpty())
                             <h4 class="title-cart">No products in the cart!</h4>
                             <p class="subtitle">Please make your choice.</p>
-                            <div class="btn btn-small btn--dark">
+                            <a href="{{ route('shop') }}" class="btn btn-small btn--dark">
                                 <span class="text">view all catalog</span>
-                            </div>
+                            </a>
+                            @else
+                            <h4 class="title-cart align-center">${{ number_format(Cart::getTotal()) }}</h4>
+                            <br>
+                            <a href="{{ route('cart') }}" class="btn btn-small btn--dark">
+                                <span class="text">View Cart</span>
+                            </a>
+                            @endif
                         </div>
                     </div>
-                    @endif
 
                 </li>
             </ul>

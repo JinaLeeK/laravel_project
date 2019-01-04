@@ -49,9 +49,9 @@ Route::group(['prefix'=>'cart'], function() {
       'as'     => 'cart.destroy'
    ]);
 
-   Route::post('edit', [
-      'uses'   => 'CartController@edit',
-      'as'     => 'cart.edit'
+   Route::get('edit/{id}/{qty}', [
+      'uses'   => 'CartController@qty_update',
+      'as'     => 'cart.qty.update'
    ]);
 
 

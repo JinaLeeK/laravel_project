@@ -21,7 +21,7 @@
                            </tr>
                         </thead>
                         <tbody>
-                        @foreach($products as $p)
+                        @foreach(Cart::getContent() as $p)
                            <tr class="cart_item">
                               <td class="product-thumbnail">
                                  <div class="cart-product__item">
@@ -38,13 +38,13 @@
                               </td>
 
                               <td class="product-subtotal">
-                                 <h5 class="total amount">${{ number_format(($p->quantity)*($p->price)) }}</h5>
+                                 <h5 class="total amount">${{ number_format( Cart::get($p->id)->getPriceSum()) }}</h5>
                               </td>
 
                            </tr>
                         @endforeach
                            <tr>
-                              <td colspan="100">${{ number_format($total) }}</td>
+                              <td colspan="100">${{ number_format( Cart::getTotal() ) }}</td>
                            </tr>
 
                      </table>

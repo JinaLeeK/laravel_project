@@ -13,7 +13,7 @@
                <div class="cart">
 
                   <h1 class="cart-title product-remove">
-                     In Your Shopping Cart: <span class="c-primary"> {{$total_qty}} items</span>
+                     In Your Shopping Cart: <span class="c-primary"> {{ Cart::getTotalQuantity() }} items</span>
                      <a href="{{ route('cart.destroy') }}" class="product-del remove" title="Remove this item">
                         <i class="seoicon-delete-bold"></i>
                      </a>
@@ -36,7 +36,7 @@
                         </tr>
                      </thead>
                      <tbody>
-                     @foreach($products as $p)
+                     @foreach(Cart::getContent() as $p)
                         <tr class="cart_item">
 
                            <td class="product-remove">
@@ -65,16 +65,15 @@
                            <td class="product-quantity">
 
                               <div class="quantity">
-                                 <a href="#" class="quantity-minus">-</a>
+                                 <a href="{{ route('cart.qty.update', ['id'=>$p->id, 'qty'=>-1]) }}" class="quantity-minus">-</a>
                                  <input title="Qty" class="email input-text qty text" type="text" placeholder="1" readonly value="{{$p->quantity}}">
-                                 <input type="hidden" class="product_id" value="{{ $p->id }}">
-                                 <a href="#" class="quantity-plus">+</a>
+                                 <a href="{{ route('cart.qty.update', ['id'=>$p->id, 'qty'=>1]) }}" class="quantity-plus">+</a>
                               </div>
 
                            </td>
 
                            <td class="product-subtotal">
-                              <h5 class="total amount">${{ number_format($p->price*$p->quantity) }}</h5>
+                              <h5 class="total amount">${{ number_format( Cart::get($p->id)->getPriceSum()) }}</h5>
                            </td>
 
                         </tr>
@@ -109,7 +108,7 @@
 
                <div class="cart-total">
                   <h3 class="cart-total-title">Cart Totals</h3>
-                  <h5 class="cart-total-total">Total: <span class="price">${{ number_format($total_price) }}</span></h5>
+                  <h5 class="cart-total-total">Total: <span class="price">${{ number_format(Cart::getTotal()) }}</span></h5>
                   <a href="{{ route('checkout') }}" class="btn btn-medium btn--light-green btn-hover-shadow">
                      <span class="text">Checkout</span>
                      <span class="semicircle"></span>
@@ -129,15 +128,4 @@
 @stop
 
 @section('scripts')
-<script type="text/javascript">
-$('.product-quantity > .quantity > a').on('click', function() {
-   $.post('/cart/edit', {
-      'id'  : $('.product-quantity input.product_id').val(),
-      'qty' : $('.product-quantity input.qty').val()
-   }, function( data ) {
-      console.log(data);
-   });
-
-})
-</script>
 @stop
